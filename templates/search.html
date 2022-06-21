@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Recipe for U</title>
+        <meta charset="UTF-8">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+            header{height: 75px; background-color: brown; position: fixed; width: 100%; top: 0; left: 0;}
+            h1{color: white; font-family: 'Noto Sans KR', sans-serif; line-height: 25px;}
+            input{font-family: 'Noto Sans KR', sans-serif; font-size: 20px; border-top: 0; border-left: 0; border-right: 0; outline: none;}
+            .titleWraper{width: 800px; margin: 0 auto;}
+            .inputWraper{width: 700px; height: fit-content; margin: 0 auto; padding-top: 100px; display: block;}
+            .tagWrapper{width: 700px; height: fit-content; margin: 0 auto; padding-top: 20px; padding-bottom: 10px;}
+            .cardWrapper{width: 2000px; margin: 0 auto; padding-top: 100px;}
+            .card{width: 500px; height: 200px; background-color: rgb(217, 217, 217); float: left; margin: 25px;}
+            .recipeTitle{font-family: 'Noto Sans KR', sans-serif; font-size: 18px;}
+            .recipeSource{font-family: 'Noto Sans KR', sans-serif; font-size: 15px; float: left; margin: 5px}
+            .addingTag{background-color: rgb(120, 179, 255); height: 30px; width: fit-content; float: left; font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin: 10px}
+            .subingTag{background-color: rgb(255, 154, 154); height: 30px; width: fit-content; float: left; font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin: 10px}
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="titleWraper">
+                <h1 onclick="//goHome()">
+                    Findish
+                </h1>
+            </div>
+        </header>
+
+        <div class="inputWraper">
+            <a style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif;">무엇을 넣나요?</a>
+        </div>
+        
+        <div class="tagWrapper" id="addingTagList">
+            <div class="addingTag">{{ addSource }}</div>
+        </div>
+        
+        <div class="inputWraper">
+            <a style="font-size: 20px; font-family: 'Noto Sans KR', sans-serif;">무엇을 빼나요?</a>
+        </div>
+        
+        <div class="tagWrapper" id="subingTagList">
+            {% for i in subList%}
+            <div class="subingTag">{{ i }}</div>
+            {% endfor %}
+        </div>
+    
+        <div class="cardWrapper">
+            {% for i in range(10)%}
+            <div class="card">
+                <div class="recipeTitle" onClick="location.href='{{ word_i[i].link }}'">{{ word_i[i].title }}</div>
+                {% for j in tfidf[i].keys() %}
+                    <div class="recipeSource">{{ j }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </body>
+
+</html>
